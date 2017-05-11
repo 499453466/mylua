@@ -1,0 +1,34 @@
+-- Jail System - Lua --
+-- by Rakkorz - ZxOxZ --
+
+JailSystemACTIVATE.Message = "#jail activate"
+JailSystemDEACTIVATE.Message = "#jail deactivate"
+JAIL = {}
+
+function JAIL.JailSystem(event, player, message, type, language)
+		if (player:CanUseCommand("a") == true) then
+        if (message == JailSystemACTIVATE.Message) then
+			local AreasForJail = {AREA1, AREA2} --Add here you Zones ID for Jail.
+				for k, v in pairs (AreasForJail) do
+					if (player:GetAreaId() == v) then
+				player:SetPlayerLock(1)
+				player:SendChatMessageToPlayer(42, 0, "Welcome to Jail!", player)
+					end
+				end
+		end
+		end
+end
+		if (player:CanUseCommand("a") == true) then
+        if (message == JailSystemDEACTIVATE.Message) then
+			local AreasForJail = {AREA1, AREA2} --Add here you Zones ID for Jail.
+				for k, v in pairs (AreasForJail) do
+					if (player:GetAreaId() == v) then
+				player:CastSpellOnTarget(8690, player) --Cast Hearthstone
+				player:SendChatMessageToPlayer(42, 0, "You are free!", player)
+					end
+				end
+		end
+		end
+end
+
+RegisterServerHook(16, "JAIL.JailSystem")
