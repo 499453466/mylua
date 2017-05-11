@@ -1,0 +1,22 @@
+playerLevelUp = {}
+
+playerLevelUp.GiveItems = {
+--[[
+{entryId, classId, level, itemCount} Should be self explanatory.
+{entryId, classId, level, itemCount} Add a new table for each item.
+{entryId, classId, level, itemCount}
+]]
+}
+function playerLevelUp.GiveThoseItems(event, player)
+	local plrClass = player:GetClass()
+	local plrLevel = player:GetLevel()
+	
+	local p = 1
+	while (p <= #playerLevelUp.GiveItems) do
+		if(plrClass == playerLevelUp.GiveItems[p][2] and plrLevel == playerLevelUp.GiveItems[p][3]) then
+			player:AddItem(playerLevelUp.GiveItems[p][1], playerLevelUp.GiveItems[p][4])
+		end
+		p = p + 1
+	end	
+end
+RegisterPlayerEvent(13, playerLevelUp.GiveThoseItems)
